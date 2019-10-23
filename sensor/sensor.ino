@@ -3,11 +3,27 @@
  * By TechMartian
  */
 
+//#include <OSCMessage.h>
+#include <WebServer.h>
+#include <WiFi.h>
+#include <WiFiUdp.h>
 
-//cosntants for the pins where sensors are plugged into.
-const int sensorPin = 14;
+/* Put your SSID & Password */
+const char* ssid = "beepbopboopbop";  // Enter SSID here
+const char* password = "123456789";  // Enter Password here
+
+/* Put IP Address details */
+IPAddress local_ip(192, 168, 1, 1);
+IPAddress gateway(192, 168, 1, 1);
+IPAddress subnet(255, 255, 255, 0);
+
+WebServer server(80);
+
+WiFiUDP udp;
+
+//constants for the pins where sensors are plugged into.
 const int ledPin = 18;
-const int diyPin = 2;
+const int diyPin = 32;
 
 //Set up some global variables for the light level an initial value.
 int lightInit;  // initial value
@@ -20,26 +36,21 @@ int diyVal;
 void setup()
 {
   Serial.begin(9600);
+
+  WiFi.softAP(ssid, password);
+  WiFi.softAPConfig(local_ip, gateway, subnet);
+
+  server.begin();
+  
   // We'll set up the LED pin to be an output.
   pinMode(ledPin, OUTPUT);
-  pinMode(sensorPin, INPUT);
-  lightInit = analogRead(sensorPin);
-  
-  //we will take a single reading from the light sensor and store it in the lightCal        //variable. This will give us a prelinary value to compare against in the loop
 }
-
 
 void loop()
 {
-//  digitalWrite(ledPin, HIGH);
-//  Serial.println("PLEASE GOD");
-  lightVal = analogRead(sensorPin); // read the current light levels
   diyVal = analogRead(diyPin);
   Serial.println(diyVal);
-//  Serial.println(lightVal);
 
-  //if lightVal is less than our initial reading withing a threshold then it is dark.
-//  if(lightVal - lightInit <  0)
   if (diyVal == 0)
   {
       digitalWrite (ledPin, HIGH); // turn on light
@@ -50,5 +61,12 @@ void loop()
   {
     digitalWrite (ledPin, LOW); // turn off light
   }
+
+    udp.beginPacket("192.168.1.2", 57222);
+    udp.print(String(diyVal));
+    udp.endPacket();
+
+    // Wait for 1 second
+    delay(100);
 
 }
