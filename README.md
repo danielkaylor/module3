@@ -24,6 +24,8 @@ The steps are as follows:
 5. Glue two small squares of foam on the end of one piece of cardboard on the copper side so that there is a good amount of copper not covered by the foam in the middle.
 6. Glue the other cardboard piece onto the foam squares so that the foam pieces are sandwiched between the two copper sides. Make sure you can press the middle the sensor together so that the copper touches.
 7. Hot glue one pompom to each side of the sensor so that when you squeeze them together, the copper in the middle touches.
+![sensor not touching](https://github.com/danielkaylor/module3/blob/master/media/notouch.jpg)
+![sensor touching](https://github.com/danielkaylor/module3/blob/master/media/touch.jpg)
 8. You're done!
 9. (Optional) Put the sensor in a box with the pompoms sticking out the top to tie things up nicely.
 
@@ -38,7 +40,11 @@ You will need the following materials:
 * Two male-male jumper cables
 
 Arrange your circuit like the picture below:
-[INSERT PICTURE]
+Raspberry Pi:
+![complete circuit](https://github.com/danielkaylor/module3/blob/master/media/circuit.jpg)
+
+ESP32:
+![esp32](https://github.com/danielkaylor/module3/blob/master/media/esp32.jpg)
 
 **Important:** make sure that the GPIO pins you use on your ESP32 for your sensor are ADC1 and not ADC2. ADC2 pins will not work when the ESP32 is using WiFi capabilities. Also, I recommend avoiding using GPIO pins on the Pi that would be used for a screen you would mount on it.
 
@@ -55,16 +61,20 @@ To make the enclosure, you have some freedom. You can make your lantern however 
 
 The steps are as follows:
 1. Glue 4 of the flat dowels in a square on one piece of black construction paper along the edges of the square. Only glue the ends of the dowels down---not the middles, so there should be a gap between the paper and the dowels. These are your edge dowels.
-2. Glue another dowel along the diagonal of the square. 
+2. Glue another dowel along the diagonal of the square.
 3. Repeat steps 1 & 2 for the other square.
-4. Glue the cylindrical dowel onto the center of one of the diagonal dowels. This is your center dowel. 
+4. Glue the cylindrical dowel onto the center of one of the diagonal dowels. This is your center dowel.
+![center dowel](https://github.com/danielkaylor/module3/blob/master/media/centerdowel.jpg)
 5. Glue the other end of the cylindrical dowel to the center of the other diagonal dowel so the corners of the squares line up.
 6. Glue one of the wax paper sheets, oriented so that the 6-inch side lines up with the square, on the top of the lantern that 1/2 inch of the sheet folds over onto the top of the lantern.
+![no dowel, with wax paper](https://github.com/danielkaylor/module3/blob/master/media/unfolded.jpg)
 7. Repeat step 6 for the other three sheets of wax paper.
 8. Place your Raspberry Pi and breadboard in the lantern on the bottom square on either side of the center dowel. Make sure the power port for the Pi is facing the edge of the lantern.
+![inside lantern](https://github.com/danielkaylor/module3/blob/master/media/inside.jpg)
 9. Thread your string through a hole in the corner of your Raspberry Pi. Tie this string around one of the flat dowels.  Repeat this for the two other holes that are next to edge dowels.
 10. Tape the breadboard down onto the dowels with masking tape.
 11. Tape the loose ends of the wax paper to the bottom of the lantern, folding half an inch over the corner, with the duct tape. Make sure there is a way for a power cord to get to the micro-USB port on the Pi.
+![outside view](https://github.com/danielkaylor/module3/blob/master/media/outside.jpg)
  
  ### Running on boot
  The code in this repo does not run on boot. However, if you are interested in running this on boot on the Pi, which is a good idea for future reproductions, you should follow steps like the ones in [this guide for running Python scripts on boot on the Pi.](https://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/ "Run Python on Boot")
@@ -75,5 +85,7 @@ Connect the ESP32 jumpers to the battery jumpers. This will start the ESP32 and 
 Plug your Pi in. You can either connect your Pi to a screen to connect it to the network or you can follow the steps in the [Pi documentation to ssh in and connect it to the network from the terminal.](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md "Connect to WiFi via the terminal")
 
 Once you're on the network hosted by the ESP32, you can run wireless.py.
+
+Check the media folder for videos of the sensor working and of the final product.
 
 Finally, squeeze away! Whenever you squeeze on the pompoms, the lantern will light up. Happy Halloween! :)
