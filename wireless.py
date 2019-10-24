@@ -17,10 +17,10 @@ GPIO.setup(13, GPIO.OUT)
 GPIO.setup(21, GPIO.OUT)
 
 while True:
-    data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
-    print("received message: {}".format(data))
+	data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
+	print("received message: {}".format(data))
 
-    if int(data) == 0:
+	if int(data) == 0:
 		GPIO.output(18, GPIO.HIGH)
 		GPIO.output(16, GPIO.HIGH)
 		GPIO.output(13, GPIO.HIGH)
